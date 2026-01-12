@@ -6,6 +6,7 @@ import SearchView from "./component/SearchView";
 import Cuisin from "./component/Cuisin";
 import HomeView from "./component/HomeView";
 import TrendingRecipe from "./component/TrendingRecipe";
+import { Home } from "lucide-react";
 
 const App = () => {
   return (
@@ -15,7 +16,7 @@ const App = () => {
           <div className="min-h-screen bg-gray-950 font-sans tex  text-gray-100">
             <Navbar/>
             <Routes>
-              <Route />
+              <Route path="/" element={<Home/>}/>
             </Routes>
           </div>
         
