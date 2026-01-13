@@ -7,6 +7,7 @@ const Navbar = () => {
 
   const handleSearch = (e) =>{
     e.preventDefault();
+    setInput("");
     console.log(`${input}`);
   }
   return (

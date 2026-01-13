@@ -6,7 +6,8 @@ import SearchView from "./component/SearchView";
 import Cuisin from "./component/Cuisin";
 import HomeView from "./component/HomeView";
 import TrendingRecipe from "./component/TrendingRecipe";
-import { Home } from "lucide-react";
+import { API_URL } from "./component/useFetch";
+
 
 const App = () => {
   return (
@@ -15,8 +16,9 @@ const App = () => {
         
           <div className="min-h-screen bg-gray-950 font-sans tex  text-gray-100">
             <Navbar/>
+            <Cuisin/>
             <Routes>
-              <Route path="/" element={<Home/>}/>
+              <Route path="/" element={<HomeView/>}/>
             </Routes>
           </div>
         
