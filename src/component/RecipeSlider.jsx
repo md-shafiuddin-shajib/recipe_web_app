@@ -19,9 +19,9 @@ const RecipeSlider = ({ title, fetchUrl }) => {
     cssEase: "linear",
   };
   if(loading) return (
-    <div>< Loader className="animate-spin inline-block mr-2 text-blue-400"/></div>
+    <div className="text-gray-300 text-center p-8 ">< Loader className="animate-spin inline-block mr-2 text-blue-400"/> Loading {title}....</div>
   )
-  if(error) return <div></div>
+  if(error) return (<div className="text-red-600 font-semibold">{error}</div>)
   return (
     <section className=" mt-2 max-w-7xl mx-auto">
       <h2 className="text-3xl font-extrabold text-gray-100 mb-6 tracking-tight border-l-4 border-amber-300 pl-4 flex items-center">

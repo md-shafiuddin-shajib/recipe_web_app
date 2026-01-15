@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RecipeCard = ({ meal }) => {
   return (
+    <Link to={`/recipe/${meal.idMeal}`}>
     <div className="relative bg-gray-900 rounded-xl shadow-xl shadow-black/50 overflow-hidden transform transition-all group duration-500 border border-gray-800 hover:shadow-blue-600/30 ">
       {/* Hover Glow */}
       <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-600/80 transition-all duration-500"></div>
@@ -18,6 +20,7 @@ const RecipeCard = ({ meal }) => {
         </h3>
       </div>
     </div>
+    </Link>
   );
 };
 
