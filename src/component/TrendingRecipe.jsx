@@ -1,63 +1,65 @@
 import React from "react";
 import { useFetch } from "./useFetch";
-import RecipeCard from "./RecipeCard";
 import Slider from "react-slick";
 import { Clock, Loader } from "lucide-react";
-
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const TrendingRecipe = ({ title, fetchUrl }) => {
- 
-  
   const { data, loading, error } = useFetch(fetchUrl);
-  console.log(data?.meals);
-  const meals = data?.meals || [];
-const settings = {
-  dots: false,
-  arrows: false,
-  infinite: true,
-  slidesToShow: 6,
-  slidesToScroll: 1,
-  autoplay: true,
-  speed: 2000,
-  autoplaySpeed: 2000,
-  cssEase: "linear",
-};
+  const meals = data?.meals ?? [];
 
-  if (loading)
+  const settings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    autoplay: true,
+    speed: 600,
+    autoplaySpeed: 2500,
+    cssEase: "ease-in-out",
+    slidesToScroll: 1,
+    slidesToShow: 6,
+    responsive: [
+      { breakpoint: 1280, settings: { slidesToShow: 5 } },
+      { breakpoint: 1024, settings: { slidesToShow: 4 } },
+      { breakpoint: 768, settings: { slidesToShow: 3 } },
+      { breakpoint: 480, settings: { slidesToShow: 2 } },
+    ],
+  };
+
+  if (loading) {
     return (
-      <div className="text-gray-300 text-center p-8 ">
-        <Loader className="animate-spin inline-block mr-2 text-blue-400" />{" "}
-        Loading {title}....
+      <div className="text-gray-300 text-center p-8">
+        <Loader className="animate-spin inline-block mr-2 text-blue-400" />
+        Loading {title}...
       </div>
     );
-  if (error) return <div className="text-red-600 font-semibold">{error}</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-600 font-semibold">{error}</div>;
+  }
+
   return (
-    <section className=" mt-2 max-w-7xl mx-auto">
+    <section className="mt-2 max-w-7xl mx-auto px-2">
       <h2 className="text-3xl font-extrabold text-gray-100 mb-6 tracking-tight border-l-4 border-amber-300 pl-4 flex items-center">
         <Clock className="size-6 mr-3 text-blue-500" />
         {title}
       </h2>
-      <div className="w-full mx-auto">
+
+      <div className="w-full overflow-hidden">
         <Slider {...settings}>
           {meals.map((meal) => (
+            <div key={meal.idMeal} className="px-2 flex justify-center">
               <Link to={`/recipe/${meal.idMeal}`}>
-            <div className="px-10 flex justify-center" key={meal.idMeal}>
-              <div className="relative bg-gray-900 rounded-xl shadow-xl shadow-black/50 overflow-hidden transform transition-all group duration-500 border border-gray-800 hover:shadow-blue-600/30 mb-5">
-                {/* Hover Glow */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-600/80 transition-all duration-500"></div>
-                
-                <div className="flex justify-center items-center p-5">
+                <div className="w-[140px] h-[160px] bg-gray-900 rounded-xl shadow-xl shadow-black/50 border border-gray-800 hover:shadow-blue-600/30 transition-all duration-300 flex items-center justify-center">
                   <img
                     src={meal.strMealThumb}
-                    alt="meals image"
-                    className="size-[120px] rounded-xl border border-yellow-400 transition-all transform group-hover:scale-105 duration-500"
+                    alt={meal.strMeal}
+                    className="w-[120px] h-[120px] object-cover rounded-xl border border-yellow-400 transition-transform duration-300 hover:scale-105"
                   />
                 </div>
-              </div>
+              </Link>
             </div>
-          </Link>
           ))}
         </Slider>
       </div>

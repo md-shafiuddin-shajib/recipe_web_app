@@ -21,8 +21,8 @@ const CatagorySelection = ({filterByCatagory}) => {
       </h2>
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
         {featureCatagories.map((catagory,index)=>(
-          <Link to={`search/${catagory}`}>
-        <div key={index} className="bg-gray-800 p-2 rounded-md hover:bg-gray-700 text-gray-300 cursor-pointer font-semibold transition" onClick={()=>filterByCatagory(catagory)}>{catagory}</div>
+          <Link to={`search/${catagory}`} key={index} >
+        <div className="bg-gray-800 p-2 rounded-md hover:bg-gray-700 text-gray-300 cursor-pointer font-semibold transition" onClick={()=>filterByCatagory(catagory)} >{catagory}</div>
         </Link>))}
       </div>
       </section>

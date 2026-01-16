@@ -3,23 +3,24 @@ import { Link } from "react-router-dom";
 
 const RecipeCard = ({ meal }) => {
   return (
-    <Link to={`/recipe/${meal.idMeal}`}>
-    <div className="relative bg-gray-900 rounded-xl shadow-xl shadow-black/50 overflow-hidden transform transition-all group duration-500 border border-gray-800 hover:shadow-blue-600/30 ">
-      {/* Hover Glow */}
-      <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-600/80 transition-all duration-500"></div>
-      <div className="flex justify-center items-center p-5">
-        <img
-          src={meal.strMealThumb}
-          alt="meals image"
-          className="size-60 rounded-xl border border-yellow-400 transition-all transform group-hover:scale-105 duration-500"
-        />
+    <Link to={`/recipe/${meal.idMeal}`} className="block">
+      <div className="relative bg-gray-900 rounded-xl shadow-xl shadow-black/50 overflow-hidden border border-gray-800 transition-all duration-500 hover:shadow-blue-600/30 w-[280px] h-[360px] flex flex-col">
+        
+        <div className="flex justify-center items-center p-4 h-[260px] overflow-hidden">
+          <img
+            src={meal.strMealThumb}
+            alt={meal.strMeal}
+            className="w-full h-full object-cover rounded-lg border border-yellow-400 transition-transform duration-500 hover:scale-105"
+          />
+        </div>
+
+        <div className="px-3 pb-4 text-center flex-1 flex items-center justify-center">
+          <h3 className="text-lg font-bold text-gray-100 line-clamp-2 hover:text-blue-400 transition-colors duration-300">
+            {meal.strMeal}
+          </h3>
+        </div>
+
       </div>
-      <div className="p-2 text-center">
-        <h3 className="sm:whitespace-nowrap text-xl pb-3 font-bold text-gray-100 mb-1 group-hover:text-blue-400 transition-all duration-500 transform group-hover:scale-105 overflow-hidden ">
-          {meal.strMeal}
-        </h3>
-      </div>
-    </div>
     </Link>
   );
 };

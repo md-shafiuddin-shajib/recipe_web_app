@@ -69,10 +69,10 @@ const App = () => {
             <Navbar handleSearchMeal={handleSearch}/>
             <Cuisin filterByArea={filterByArea}/>
             <Routes>
-              <Route path="/" element={<HomeView/>}/>
+              <Route path="/" element={<HomeView filterByCatagory={filterByCatagory}/>}/>
               <Route path="/recipe/:id" element={<RecipeDetailsView/>}/>
               <Route path="/search/:query" element={<SearchView meals={searchResults} loading={searchLoading}/>}/>
-              <Route path='/search/:catagory' element={<CatagorySelection filterByCatagory={filterByCatagory}/>}/>
+             
 
             </Routes>
           </div>
