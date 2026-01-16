@@ -4,7 +4,12 @@ import RecipeCard from "./RecipeCard";
 import Slider from "react-slick";
 import { Clock, Loader } from "lucide-react";
 
+import { Link } from 'react-router-dom';
+
+
 const TrendingRecipe = ({ title, fetchUrl }) => {
+ 
+  
   const { data, loading, error } = useFetch(fetchUrl);
   console.log(data?.meals);
   const meals = data?.meals || [];
@@ -37,10 +42,12 @@ const settings = {
       <div className="w-full mx-auto">
         <Slider {...settings}>
           {meals.map((meal) => (
+              <Link to={`/recipe/${meal.idMeal}`}>
             <div className="px-10 flex justify-center" key={meal.idMeal}>
               <div className="relative bg-gray-900 rounded-xl shadow-xl shadow-black/50 overflow-hidden transform transition-all group duration-500 border border-gray-800 hover:shadow-blue-600/30 mb-5">
                 {/* Hover Glow */}
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-600/80 transition-all duration-500"></div>
+                
                 <div className="flex justify-center items-center p-5">
                   <img
                     src={meal.strMealThumb}
@@ -50,6 +57,7 @@ const settings = {
                 </div>
               </div>
             </div>
+          </Link>
           ))}
         </Slider>
       </div>

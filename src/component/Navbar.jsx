@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import { Zap,Search } from 'lucide-react';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({handleSearchMeal}) => {
   const [input, setInput] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = (e) =>{
     e.preventDefault();
     setInput("");
     console.log(`${input}`);
+    if(input.trim()){
+      handleSearchMeal(input.trim());
+      navigate(`/search/${input.trim()}`);
+    }
   }
   return (
     <nav className='sticky top-0 z-50 bg-gray-950/90 backdrop-blur-md shadow-2xl shadow-black/50 border-b border-blue-950/50'>

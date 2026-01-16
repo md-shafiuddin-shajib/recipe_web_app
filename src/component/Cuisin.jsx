@@ -1,7 +1,8 @@
 import React from "react";
 import { Globe } from "lucide-react";
+import { Link } from 'react-router-dom';
 
-const Cuisin = () => {
+const Cuisin = ({filterByArea}) => {
   const featureAreas = [
     "American",
     "British",
@@ -23,12 +24,15 @@ const Cuisin = () => {
               <h1 className="whitespace-nowrap">Global Cuisines:</h1>
             </div>
             {featureAreas.map((area, index) => (
+              <Link to={`/search/${area}`}>
               <button
                 key={index}
                 className="cursor-pointer text-gray-200 text-sm whitespace-normal hver:text-white trasition-all duration-300 py-1.5 px-4 rounded-full bg-gray-800 hover:bg-indigo-600 border border-gray-700 transform hover:scale-105"
+                onClick={()=>filterByArea(area)}
               >
                 {area}
               </button>
+              </Link>
             ))}
           </div>
         </div>
